@@ -1,6 +1,9 @@
 name: flutter-build-web
 description: Builds a web application
 inputs:
+  working-directory:
+    description: The root directory of the flutter app within this repository
+    default: ./
   build-cmd:
     description: The full build command, can be used to add arguments
     default: flutter build apk --release
@@ -31,3 +34,4 @@ runs:
     - name: Build
       run: ${{ inputs.build-cmd }}
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
