@@ -1,0 +1,37 @@
+name: flutter-build-web
+description: Builds a web application
+inputs:
+  working-directory:
+    description: The root directory of the flutter app within this repository
+    default: ./
+  build-cmd:
+    description: The full build command, can be used to add arguments
+    default: flutter build apk --release
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check flutter found
+      id: check_flutter
+      shell: bash
+      run: |
+        if flutter --version; then
+            echo "installed=true" >> "$GITHUB_OUTPUT"
+        else
+            echo "installed=false" >> "$GITHUB_OUTPUT"
+        fi
+
+    - name: Setup flutter
+      if: steps.check_flutter.outputs.installed == 'false'
+      uses: subosito/flutter-action@v2
+      with:
+        channel: "stable"
+        cache: true
+
+    - run: flutter --version
+      shell: bash
+
+    - name: Build
+      run: ${{ inputs.build-cmd }}
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
