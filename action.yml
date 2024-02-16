@@ -1,5 +1,5 @@
 name: flutter-build-web
-description: Builds a web application
+description: Builds a web application with flutter
 branding:
   icon: box
   color: green
