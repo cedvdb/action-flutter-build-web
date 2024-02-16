@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: cedvdb/flutter-build-web
+      - uses: cedvdb/action-flutter-build-web@v1
         with:
           build-cmd: flutter build web --release
           working-directory: ./
