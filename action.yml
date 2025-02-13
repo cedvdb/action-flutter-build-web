@@ -4,6 +4,9 @@ branding:
   icon: box
   color: green
 inputs:
+  flutter-version:
+    description: The selected Flutter version
+    default: 3.19.0
   working-directory:
     description: The root directory of the flutter app within this repository
     default: ./
@@ -30,7 +33,7 @@ runs:
       with:
         channel: "stable"
         cache: true
-
+        flutter-version: ${{ inputs.flutter-version }}
     - run: flutter --version
       shell: bash
 
