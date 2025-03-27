@@ -21,6 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # You can install flutter prior to using this action. This action won't install flutter then.
+
       - uses: cedvdb/action-flutter-build-web@v1
         with:
           build-cmd: flutter build web --release
